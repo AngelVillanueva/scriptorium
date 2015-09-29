@@ -18,6 +18,6 @@ describe Book do
     expect(@book.title).to match 'My first book'
   end
 
-  it { should respond_to(:user) }
+  it { should belong_to(:user) }
 
 end
