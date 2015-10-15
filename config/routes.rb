@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
   devise_for :users
-  resources :users do
-    resources :ideas
-  end
+  resources :users
+  resources :ideas
 end

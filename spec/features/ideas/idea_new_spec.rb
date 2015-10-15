@@ -20,7 +20,7 @@ feature 'Idea creation', :devise do
       visit user_path(user)
       click_link 'New Idea'
       fill_in 'Title', :with => "My next great Idea"
-      fill_in 'Text', :with => "What if Don Quixote was a woman?"
+      fill_in 'Body', :with => "What if Don Quixote was a woman?"
       click_button 'Create'
       idea = Idea.last
       expect(page).to have_content idea.title
