@@ -23,7 +23,7 @@ feature 'Idea creation', :devise do
       fill_in 'Body', :with => "What if Don Quixote was a woman?"
       click_button 'Create'
       idea = Idea.last
-      expect(page).to have_content idea.title
+      expect(page).to have_content "Angel" << idea.title
   end
   
 end
