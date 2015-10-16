@@ -22,8 +22,8 @@ feature 'Idea creation', :devise do
       fill_in 'Title', :with => "My next great Idea"
       fill_in 'Body', :with => "What if Don Quixote was a woman?"
       click_button 'Create'
-      idea = Idea.last
-      expect(page).to have_content "Angel" << idea.title
+      expect(Idea.all.count).to equal(1)
+      expect(Idea.last.title).to_not equal(nil)
   end
   
 end
