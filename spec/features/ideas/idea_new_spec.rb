@@ -23,7 +23,8 @@ feature 'Idea creation', :devise do
       fill_in 'Body', :with => "What if Don Quixote was a woman?"
       click_button 'Create'
       expect(Idea.all.count).to equal(1)
-      expect(Idea.last.title).to_not equal(nil)
+      idea = Idea.last
+      expect(page).to have_content(idea.title)
   end
   
 end

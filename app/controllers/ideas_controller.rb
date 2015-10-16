@@ -3,7 +3,7 @@ class IdeasController < ApplicationController
         @idea = Idea.new
     end
     def create
-        @idea = Idea.new(secure_params[:idea])
+        @idea = Idea.new(secure_params)
 
         if @idea.save
             redirect_to @idea, notice: 'Idea was successfully created.'
