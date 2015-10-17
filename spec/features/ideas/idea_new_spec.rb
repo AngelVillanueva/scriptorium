@@ -25,6 +25,7 @@ feature 'Idea creation', :devise do
       expect(Idea.all.count).to equal(1)
       idea = Idea.last
       expect(page).to have_content(idea.title)
+      expect(page).to have_content "The new idea was created successfully"
   end
   
 end
