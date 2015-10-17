@@ -1,23 +1,16 @@
 class IdeasController < ApplicationController
-    def new
-        @idea = Idea.new
-    end
-    def create
-        @idea = Idea.new(secure_params)
+    # http://blog.remarkablelabs.com/2013/01/how-to-decrease-coupling-in-your-controllers-views-with-decent_exposure-for-better-maintainability
+    respond_to :html
+    expose :idea, attributes: :idea_params
 
-        if @idea.save
-            redirect_to @idea, notice: 'Idea was successfully created.'
-        else
-            render action: "new"
-        end
+    
+    def create
+        idea.save
+        respond_with(idea)
     end
-    def show
-        @idea = Idea.find(params[:id])
-    end
+    
     
     private
 
-    def secure_params
-        params.require(:idea).permit(:title, :body)
-    end
+    params_for :idea, :title, :body
 end
