@@ -5,6 +5,7 @@ Warden.test_mode!
 #   As a user
 #   I want to create a new idea
 #   So I can use it as the seed for a future story
+
 feature 'Idea creation', :devise do
   after(:each) do
     Warden.test_reset!
