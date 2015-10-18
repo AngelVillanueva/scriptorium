@@ -26,3 +26,4 @@ en:
   Create Idea: "Create Idea"
   flash:
     New idea success: "The new idea was successfully created"
+    New idea missing fields: "Please fill in all mandatory fields"

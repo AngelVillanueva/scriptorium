@@ -27,5 +27,16 @@ feature 'Idea creation', :devise do
       expect(page).to have_content(idea.title)
       expect(page).to have_content I18n.t("flash.New idea success")
   end
+  scenario 'user cannot create a new idea without all the information' do
+      user = FactoryGirl.create(:user)
+      login_as(user, :scope => :user)
+      visit user_path(user)
+      click_link I18n.t('New Idea')
+      fill_in I18n.t('Title'), :with => "My next great Idea"
+      fill_in I18n.t('Body'), :with => ""
+      click_button I18n.t('Create Idea')
+      expect(Idea.all.count).to equal(0)
+      expect(page).to have_content I18n.t("flash.New idea missing fields")
+  end
   
 end

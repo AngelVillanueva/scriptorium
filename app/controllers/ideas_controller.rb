@@ -5,7 +5,11 @@ class IdeasController < ApplicationController
 
     
     def create
-        flash[:notice] = I18n.t("flash.New idea success") if idea.save
+        if idea.save
+          flash[:notice] = I18n.t("flash.New idea success")
+        else
+          flash[:notice] = I18n.t("flash.New idea missing fields")
+        end
         respond_with(idea)
     end
     
