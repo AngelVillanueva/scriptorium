@@ -27,6 +27,10 @@ feature 'Idea creation', :devise do
       expect(page).to have_content(idea.title)
       expect(page).to have_content I18n.t("flash.New idea success")
   end
+  # Scenario: User try to create an Idea without providing all the information
+  #   Given I am signed in
+  #   When I try to create a new Idea without all the information
+  #   Then I see an error message
   scenario 'user cannot create a new idea without all the information' do
       user = FactoryGirl.create(:user)
       login_as(user, :scope => :user)
