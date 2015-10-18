@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  New Idea: "New Idea"
+  Title: "Title"
+  Body: "Body"
+  Create Idea: "Create Idea"
+  flash:
+    New idea success: "The new idea was successfully created"

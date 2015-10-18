@@ -5,7 +5,7 @@ class IdeasController < ApplicationController
 
     
     def create
-        flash[:notice] = "The new idea was created successfully" if idea.save
+        flash[:notice] = I18n.t("flash.New idea success") if idea.save
         respond_with(idea)
     end
     

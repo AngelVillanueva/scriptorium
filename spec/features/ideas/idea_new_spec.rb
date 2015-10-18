@@ -18,14 +18,14 @@ feature 'Idea creation', :devise do
       user = FactoryGirl.create(:user)
       login_as(user, :scope => :user)
       visit user_path(user)
-      click_link 'New Idea'
-      fill_in 'Title', :with => "My next great Idea"
-      fill_in 'Body', :with => "What if Don Quixote was a woman?"
-      click_button 'Create'
+      click_link I18n.t('New Idea')
+      fill_in I18n.t('Title'), :with => "My next great Idea"
+      fill_in I18n.t('Body'), :with => "What if Don Quixote was a woman?"
+      click_button I18n.t('Create Idea')
       expect(Idea.all.count).to equal(1)
       idea = Idea.last
       expect(page).to have_content(idea.title)
-      expect(page).to have_content "The new idea was created successfully"
+      expect(page).to have_content I18n.t("flash.New idea success")
   end
   
 end
