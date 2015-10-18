@@ -2,3 +2,4 @@
 <p>Name: <%= @user.name if @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
 <p><%= link_to I18n.t("New Idea"), new_idea_path(@user) %></p>
+<p><%= link_to I18n.t("My Ideas"), ideas_path(@user) %></p>
