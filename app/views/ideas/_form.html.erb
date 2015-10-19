@@ -1,0 +1,11 @@
+<%= simple_form_for idea do |f| %>
+    <h3>New Idea</h3>
+    # here the error placeholder
+    <div class="form-group">
+      <%= f.input :title, :autofocus => true, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.input :body, class: 'form-control' %>
+    </div>
+     <%= f.submit 'Create Idea', :class => 'button right' %>
+<% end %>

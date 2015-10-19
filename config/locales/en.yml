@@ -20,4 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  My Ideas: "My Ideas"
+  New Idea: "New Idea"
+  Title: "Title"
+  Body: "Body"
+  Create Idea: "Create Idea"
+  flash:
+    New idea success: "The new idea was successfully created"
+    New idea missing fields: "Please fill in all mandatory fields"
