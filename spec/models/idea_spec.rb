@@ -10,7 +10,7 @@
 
 describe Idea do
 
-  let(:idea) { Idea.new(title: "My next great Idea", body: 'What if Don Quixote was a woman?') }
+  let(:idea) { FactoryGirl.build_stubbed :idea }
 
   subject { idea }
 
