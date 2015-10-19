@@ -27,6 +27,11 @@ feature 'Idea index', :devise do
       expect(page).to have_selector("li.idea", count: 3)
       expect(page).to have_content("My great Idea number 2")
   end
+  # Scenario: User cannot see other's Ideas
+  #   Given I am signed in
+  #   When I visit My Ideas page
+  #   Then I see just my Ideas
+  #   And  I cannot see Ideas coming from another Writer
   scenario 'users cannot see ideas from other writers' do
     user1 = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user, email: "user2@example.com")
@@ -35,11 +40,11 @@ feature 'Idea index', :devise do
     visit ideas_path(user1)
     expect(page).to_not have_selector("li.idea")
   end
-  scenario 'the page of other writer idea cannot be accesed' do
-    skip 'pending'
-    visit idea_path(idea)
-    expect(page).to_not have_content(idea.body)
-  end
+  # Scenario: User can access the Idea page for her Ideas
+  #   Given I am signed in
+  #   When I visit My Ideas page
+  #   And I choose one of them to see in detail
+  #   Then I see the Idea page
   scenario 'users can go to an Idea page from the Ideas index' do
     user = FactoryGirl.create(:user)
     idea = FactoryGirl.create(:idea, user: user)
@@ -48,5 +53,15 @@ feature 'Idea index', :devise do
     click_link idea.title
     expect(page).to have_content(idea.title)
     expect(page).to have_content(idea.body)
+  end
+  # Scenario: the Idea page is just accessible for its Writer
+  #   Given I am signed in
+  #   And another Writer has an Idea
+  #   When I visit that Idea page
+  #   Then I cannot access the Idea page
+  scenario 'the page of other writer idea cannot be accesed' do
+    skip 'pending'
+    visit idea_path(idea)
+    expect(page).to_not have_content(idea.body)
   end
 end
