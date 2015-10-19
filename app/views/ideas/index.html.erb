@@ -1,6 +1,6 @@
 <h1><%= I18n.t("My Ideas") %></h1>
 <ul>
   <% ideas.each do |idea| %>
-  <li class="idea"><%= idea.title %></li>
+  <li class="idea"><%= link_to idea.title, idea_path(idea) %></li>
   <% end %>
 </ul>
