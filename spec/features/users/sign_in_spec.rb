@@ -46,4 +46,15 @@ feature 'Sign in', :devise do
     expect(page).to have_content I18n.t 'devise.failure.invalid', authentication_keys: 'email'
   end
 
+  # Scenario: User is redirected to her page after successfull login
+  #   Given I exist as a user
+  #   And I am not signed in
+  #   When I sign in with valid credentials
+  #   Then I see my profile page
+  scenario 'user succesfully signed in lands in her profile page' do
+    user = FactoryGirl.create(:user)
+    signin(user.email, user.password)
+    expect(page).to have_content I18n.t 'my_page'
+  end
+
 end
