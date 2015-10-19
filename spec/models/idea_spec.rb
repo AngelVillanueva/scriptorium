@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: ideas
+#
+#  id      :integer          not null, primary key
+#  title   :string
+#  body    :text
+#  user_id :integer
+#
+
 describe Idea do
 
   before(:each) { @idea = Idea.new(title: "My next great Idea", body: 'What if Don Quixote was a woman?') }
