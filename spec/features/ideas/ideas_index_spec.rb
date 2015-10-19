@@ -28,15 +28,15 @@ feature 'Idea index', :devise do
       expect(page).to have_content("My great Idea number 2")
   end
   scenario 'users cannot see ideas from other writers' do
-    skip 'skip until Pundit is under control'
     user1 = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user, email: "user2@example.com")
     idea = FactoryGirl.create(:idea, user: user2)
     login_as(user1, :scope => :user)
     visit ideas_path(user1)
     expect(page).to_not have_selector("li.idea")
-    expect(user2.ideas.count).to eq(1)
-    expect(idea.user).to equal(user2)
+  end
+  scenario 'the page of other writer idea cannot be accesed' do
+    skip 'pending'
     visit idea_path(idea)
     expect(page).to_not have_content(idea.body)
   end
