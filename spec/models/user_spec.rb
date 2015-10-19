@@ -21,7 +21,7 @@
 
 describe User do
 
-  let(:user) { User.new(email: 'user@example.com') }
+  let(:user) { FactoryGirl.build_stubbed :user }
 
   subject { user }
 
@@ -29,7 +29,7 @@ describe User do
   it { should have_many(:ideas) }
 
   it "#email returns a string" do
-    expect(user.email).to match 'user@example.com'
+    expect(user.email).to match 'test@example.com'
   end
 
 end
