@@ -1,5 +1,5 @@
 <h3><%= I18n.t 'my_page' %></h3>
 <p>Name: <%= @user.name if @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
-<p><%= link_to I18n.t("New Idea"), new_idea_path(@user) %></p>
-<p><%= link_to I18n.t("My Ideas"), ideas_path(@user) %></p>
+<p><%= link_to I18n.t("New Idea"), new_user_idea_path(@user) %></p>
+<p><%= link_to I18n.t("My Ideas"), user_ideas_path(@user) %></p>

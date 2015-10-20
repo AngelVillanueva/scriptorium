@@ -37,7 +37,7 @@ feature 'Idea index', :devise do
     user2 = FactoryGirl.create(:user, email: "user2@example.com")
     idea = FactoryGirl.create(:idea, user: user2)
     login_as(user1, :scope => :user)
-    visit ideas_path(user1)
+    visit user_ideas_path(user1)
     expect(page).to_not have_selector("li.idea")
   end
   # Scenario: User can access the Idea page for her Ideas
@@ -49,7 +49,7 @@ feature 'Idea index', :devise do
     user = FactoryGirl.create(:user)
     idea = FactoryGirl.create(:idea, user: user)
     login_as(user, :scope => :user)
-    visit ideas_path(user)
+    visit user_ideas_path(user)
     click_link idea.title
     expect(page).to have_content(idea.title)
     expect(page).to have_content(idea.body)
@@ -64,7 +64,7 @@ feature 'Idea index', :devise do
     idea = FactoryGirl.create(:idea, user: user)
     user2 = FactoryGirl.create(:user, email: "test2@example.com")
     login_as(user2, :scope => :user)
-    visit idea_path(idea)
+    visit user_idea_path(idea)
     expect(page).to_not have_content(idea.body)
   end
 end

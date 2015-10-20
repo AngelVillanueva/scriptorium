@@ -3,6 +3,7 @@ class IdeasController < ApplicationController
     respond_to :html
     expose :idea, attributes: :idea_params
     expose :ideas
+    expose :user
 
     
     def create
@@ -11,7 +12,7 @@ class IdeasController < ApplicationController
         else
           flash[:notice] = I18n.t("flash.New idea missing fields")
         end
-        respond_with(idea)
+        respond_with( user,idea )
     end
     
     
