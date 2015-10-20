@@ -64,7 +64,7 @@ feature 'Idea index', :devise do
     idea = FactoryGirl.create(:idea, user: user)
     user2 = FactoryGirl.create(:user, email: "test2@example.com")
     login_as(user2, :scope => :user)
-    visit user_idea_path(idea)
+    visit user_idea_path(user,idea)
     expect(page).to_not have_content(idea.body)
   end
 end
