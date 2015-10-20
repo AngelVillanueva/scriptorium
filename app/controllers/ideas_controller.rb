@@ -6,6 +6,9 @@ class IdeasController < ApplicationController
     expose :user
 
     
+    def show
+      authorize idea
+    end
     def create
         if idea.save
           flash[:notice] = I18n.t("flash.New idea success")
