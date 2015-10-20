@@ -2,7 +2,7 @@ class IdeasController < ApplicationController
     # http://blog.remarkablelabs.com/2013/01/how-to-decrease-coupling-in-your-controllers-views-with-decent_exposure-for-better-maintainability
     respond_to :html
     expose :idea, attributes: :idea_params
-    expose(:ideas) { current_user.ideas }
+    expose :ideas
 
     
     def create

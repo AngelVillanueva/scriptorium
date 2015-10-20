@@ -60,7 +60,10 @@ feature 'Idea index', :devise do
   #   When I visit that Idea page
   #   Then I cannot access the Idea page
   scenario 'the page of other writer idea cannot be accesed' do
-    skip 'pending'
+    user = FactoryGirl.create(:user)
+    idea = FactoryGirl.create(:idea, user: user)
+    user2 = FactoryGirl.create(:user, email: "test2@example.com")
+    login_as(user2, :scope => :user)
     visit idea_path(idea)
     expect(page).to_not have_content(idea.body)
   end
