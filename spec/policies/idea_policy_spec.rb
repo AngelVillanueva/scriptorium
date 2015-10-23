@@ -18,5 +18,11 @@ describe IdeaPolicy do
       expect(subject).to permit(admin)
     end
   end
+  
+  permissions :index? do
+    it "prevents other users from access your Ideas page" do
+      expect(subject).not_to permit(other_user)
+    end
+  end
 
 end

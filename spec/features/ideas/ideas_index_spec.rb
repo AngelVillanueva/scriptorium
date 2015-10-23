@@ -27,18 +27,29 @@ feature 'Idea index', :devise do
       expect(page).to have_selector("li.idea", count: 3)
       expect(page).to have_content("My great Idea number 2")
   end
-  # Scenario: User cannot see other's Ideas
+  # Scenario: User cannot see other's Ideas in her Ideas page
   #   Given I am signed in
   #   When I visit My Ideas page
   #   Then I see just my Ideas
   #   And  I cannot see Ideas coming from another Writer
-  scenario 'users cannot see ideas from other writers' do
+  scenario 'users cannot see ideas from other writers in her Ideas page' do
     user1 = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user, email: "user2@example.com")
     idea = FactoryGirl.create(:idea, user: user2)
     login_as(user1, :scope => :user)
     visit user_ideas_path(user1)
     expect(page).to_not have_selector("li.idea")
+  end
+  # Scenario: User cannot access other writer's Ideas page
+  #   Given I am signed in
+  #   When I visit other Writer's Ideas page
+  #   Then I cannot access that page
+  scenario 'users cannot access other writer Ideas page' do
+    user1 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, email: "test2@example.com")
+    login_as(user1, :scope => :user)
+    visit user_ideas_path(user2)
+    expect(page).to have_content("Access denied")
   end
   # Scenario: User can access the Idea page for her Ideas
   #   Given I am signed in

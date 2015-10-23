@@ -6,6 +6,9 @@ class IdeasController < ApplicationController
     expose :user
 
     
+    def index
+      authorize user, :show_ideas?
+    end
     def show
       authorize idea
     end
