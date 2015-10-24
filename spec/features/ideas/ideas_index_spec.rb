@@ -51,19 +51,24 @@ feature 'Idea index', :devise do
     visit user_ideas_path(user2)
     expect(page).to have_content("Access denied")
   end
-  # Scenario: User can access the Idea page for her Ideas
+  # Scenario: Admin can access other writer's Ideas page
   #   Given I am signed in
-  #   When I visit My Ideas page
-  #   And I choose one of them to see in detail
-  #   Then I see the Idea page
-  scenario 'users can go to an Idea page from the Ideas index' do
-    user = FactoryGirl.create(:user)
-    idea = FactoryGirl.create(:idea, user: user)
-    login_as(user, :scope => :user)
-    visit user_ideas_path(user)
-    click_link idea.title
-    expect(page).to have_content(idea.title)
-    expect(page).to have_content(idea.body)
+  #   When I visit other Writer's Ideas page
+  #   Then I cannot access that page
+  scenario 'users cannot access other writer Ideas page' do
+    user1 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, email: "test2@example.com")
+    login_as(user1, :scope => :user)
+    visit user_ideas_path(user2)
+    expect(page).to have_content("Access denied")
+  end
+  # Scenario: Admin can access the Idea page for her Ideas
+  scenario 'admin can go to any Idea page from any Ideas index' do
+    pending 'thinking about the behaviour to be tested'
+  end
+  # Scenario: the failed access to any Idea page shoud be gracefully recovered
+  scenario 'unauthorized access to Idea page should be recovered' do
+    pending 'thinking about the behaviour to be tested'
   end
   # Scenario: the Idea page is just accessible for its Writer
   #   Given I am signed in
