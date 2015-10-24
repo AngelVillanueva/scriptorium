@@ -3,6 +3,7 @@ describe UserPolicy do
 
   let (:current_user) { FactoryGirl.build_stubbed :user }
   let (:other_user) { FactoryGirl.build_stubbed :user }
+  let(:idea) { FactoryGirl.build_stubbed :idea, user: current_user }
   let (:admin) { FactoryGirl.build_stubbed :user, :admin }
 
   permissions :index? do
@@ -41,6 +42,13 @@ describe UserPolicy do
     end
     it "allows an admin to delete any user" do
       expect(subject).to permit(admin, other_user)
+    end
+  end
+
+
+  permissions :show_ideas? do
+    it "prevents other users from access your Ideas page" do
+      expect(subject).not_to permit(other_user, idea)
     end
   end
 
