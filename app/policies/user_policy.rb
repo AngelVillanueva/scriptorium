@@ -3,7 +3,7 @@ class UserPolicy
 
   def initialize(current_user, model)
     @current_user = current_user
-    @user = model
+    @model = model
   end
 
   def index?
@@ -11,7 +11,7 @@ class UserPolicy
   end
 
   def show?
-    @current_user.admin? or @current_user == @user
+    @current_user.admin? or @current_user == @model
   end
 
   def update?
@@ -19,12 +19,12 @@ class UserPolicy
   end
 
   def destroy?
-    return false if @current_user == @user
+    return false if @current_user == @model
     @current_user.admin?
   end
   
   def show_ideas?
-    @current_user.id == @user.id
+    @current_user.id == @model.id
   end
 
 end
