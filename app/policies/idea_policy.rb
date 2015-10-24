@@ -3,11 +3,11 @@ class IdeaPolicy
 
   def initialize(current_user, model)
     @current_user = current_user
-    @idea = model
+    @model = model
   end
   
   def show?
-    @current_user.admin? or @current_user == @idea.user
+    @current_user.admin? or @current_user == @model.user
   end
 
 end
